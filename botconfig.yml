@@ -1,0 +1,5 @@
+- hosts: mozdefbot
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: mozdefbot, tags: ['mozdefbot'] }
