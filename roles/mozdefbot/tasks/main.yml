@@ -1,0 +1,22 @@
+---
+- include_vars: configs.yml
+- name: Create configuration directory
+  file:
+    path: /home/jbryner/envs/mozdef/bot
+    state: directory
+    mode: 0755
+    owner: jbryner
+
+- name: set the mozdefbot configuration through vars
+  copy:
+    content: "{{ mozdefbotprodconf }}"
+    dest: /home/jbryner/envs/mozdef/bot/mozdefbot.conf
+    mode: 0640
+    owner: mozdef
+#  notify: restart servicename
+- name: set the mozdefbot configuration through file copy
+  copy:
+    src: ./roles/mozdefbot/files/mozdefbot.conf
+    dest: /home/jbryner/envs/mozdef/bot/mozdefbot.vaulted.conf
+    mode: 0640
+    owner: mozdef
